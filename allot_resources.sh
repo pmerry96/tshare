@@ -43,17 +43,26 @@ if [ $? -eq 0 ]; then
 				# or
 				# if your prev resources are more than your newly allotted
 				if [ $currentmem == 0 ] || [ $currentmem > $roundedmem]; then
-					#log the user out after 5 minutes to force a new memory allotment
-					#echo "*emperor voice* do it"
-					echo "You will be logged out in 5 minutes" | write $1
-					echo "echo \"you will be logged out in 1 minute\" | write $1" | at now + 4 minutes
-					echo "skill -kill -u $1" | at now + 5 minutes
+					echo "Your memory allotement has changed, please sign off and back on as soon as possible for changes to take effect" | write $1
+					#==============================================================================
+					#==============================================================================
+					#uncomment the following 3 lines in order to force user logout when allotment decreases
+					#to uncomment, simply delete the '#' character at the beginning of the line
+					# ********************** BEGIN UNCOMMENTING HERE ******************************
+					#
+					#echo "You will be logged out in 5 minutes" | write $1
+					#echo "echo \"you will be logged out in 1 minute\" | write $1" | at now + 4 minutes
+					#echo "skill -kill -u $1" | at now + 5 minutes
+					#
+					# ****************** DO NOT UNCOMMENT FURTHER THAN HERE ***********************
+					#==============================================================================
+					#=============================================================================
 				fi
 			fi
 		fi
 		exit
 	else
-		#echo "Cannot allot resources to user with limiting factor of $2"
+
 		exit
 	fi
 else
